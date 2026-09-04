@@ -1154,7 +1154,7 @@ model_save <- data.frame(); model_multi <- data.frame()
 
 # ____3.2.1 Test 1: CV_TTH -------------------------------------------------------------------------
 # ______(1) DR_total -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1164,21 +1164,21 @@ data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_total") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_TTH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_TTH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_TTH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_TTH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_TTH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_TTH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_TTH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_total", index = "CV_TTH"))
 
 # ______(2) DR_uproot ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1188,21 +1188,21 @@ data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_uproot") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_TTH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_TTH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_TTH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_TTH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_TTH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_TTH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_TTH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_uproot", index = "CV_TTH"))
 
 # ______(3) DR_below -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1212,21 +1212,21 @@ data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_below") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_TTH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_TTH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_TTH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_TTH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_TTH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_TTH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_TTH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_below", index = "CV_TTH"))
 
 # ______(4) DR_up ----------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1236,21 +1236,21 @@ data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_up") |> pi
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_TTH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_TTH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_TTH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_TTH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_TTH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_TTH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_TTH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_up", index = "CV_TTH"))
 
 # ______(5) DR_branch ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1260,22 +1260,22 @@ data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_branch") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_TTH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_TTH") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_TTH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_TTH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_TTH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_TTH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_TTH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_TTH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_branch", index = "CV_TTH"))
 
 # ____3.2.2 Test 2: CV_DBH -------------------------------------------------------------------------
 # ______(1) DR_total -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1285,21 +1285,21 @@ data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_total") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_DBH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_DBH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_DBH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_DBH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_DBH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_DBH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_DBH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_total", index = "CV_DBH"))
 
 # ______(2) DR_uproot ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1309,21 +1309,21 @@ data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_uproot") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_DBH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_DBH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_DBH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_DBH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_DBH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_DBH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_DBH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_uproot", index = "CV_DBH"))
 
 # ______(3) DR_below -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1333,21 +1333,21 @@ data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_below") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_DBH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_DBH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_DBH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_DBH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_DBH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_DBH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_DBH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_below", index = "CV_DBH"))
 
 # ______(4) DR_up ----------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1357,21 +1357,21 @@ data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_up") |> pi
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_DBH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_DBH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_DBH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_DBH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_DBH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_DBH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_DBH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_up", index = "CV_DBH"))
 
 # ______(5) DR_branch ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1381,22 +1381,22 @@ data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_branch") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_DBH_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_DBH") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_DBH_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_DBH_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_DBH_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_DBH_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_DBH_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_DBH", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_branch", index = "CV_DBH"))
 
 # ____3.2.3 Test 3: CV_NMB -------------------------------------------------------------------------
 # ______(1) DR_total -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_total") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1406,21 +1406,21 @@ data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_total") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_NMB_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_total") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_NMB_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_NMB_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_NMB_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_NMB_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_NMB_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_NMB", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_total", index = "CV_NMB"))
 
 # ______(2) DR_uproot ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_uproot") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1430,21 +1430,21 @@ data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_uproot") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_NMB_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_uproot") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_NMB_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_NMB_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_NMB_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_NMB_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_NMB_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_NMB", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_uproot", index = "CV_NMB"))
 
 # ______(3) DR_below -------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_below") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1454,21 +1454,21 @@ data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_below") |>
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_NMB_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_below") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_NMB_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_NMB_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_NMB_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_NMB_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_NMB_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_NMB", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_below", index = "CV_NMB"))
 
 # ______(4) DR_up ----------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_up") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1478,21 +1478,21 @@ data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_up") |> pi
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_NMB_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_up") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_NMB_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_NMB_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_NMB_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_NMB_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_NMB_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_NMB", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_up", index = "CV_NMB"))
 
 # ______(5) DR_branch ------------------------------------------------------------------------------
-data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:niche_width), names_to = "trait", values_to = "value") |> 
+data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_branch") |> pivot_longer(cols = c(woody_density:NB), names_to = "trait", values_to = "value") |> 
   ggplot(aes(x = value, y = Std_Coefficient, color = trait)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "#ff0000") + 
@@ -1502,15 +1502,15 @@ data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_branch") |
   theme_bw(base_family = "serif") + 
   theme(legend.position = "none")
 
-data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:niche_width), ~ scale_z(.x)))
-model_CV_NMB_01 <- lm(Std_Coefficient ~ niche_width, data)
+data <- data_set2_2 |> filter(index == "CV_NMB") |> filter(damage_type == "DR_branch") |> mutate(across(c(woody_density:NB), ~ scale_z(.x)))
+model_CV_NMB_01 <- lm(Std_Coefficient ~ NB, data)
 model_CV_NMB_02 <- lm(Std_Coefficient ~ woody_density, data)
 model_CV_NMB_03 <- lm(Std_Coefficient ~ P50, data)
 model_CV_NMB_04 <- lm(Std_Coefficient ~ rdmax, data)
 model_CV_NMB_05 <- lm(Std_Coefficient ~ height, data)
 model_save <- bind_rows(model_save, save_lm("CV_NMB", 5))
 
-model_all <- lm(Std_Coefficient ~ niche_width + woody_density + P50 + rdmax + height, data)
+model_all <- lm(Std_Coefficient ~ NB + woody_density + P50 + rdmax + height, data)
 model_set <- dredge(model_all, trace = 2, options(na.action = "na.fail"))
 model_avg <- model.avg(model_set, delta < 4) |> summary()
 model_multi <- bind_rows(model_multi, model_avg$coefmat.full |> as.data.frame() |> mutate(Y = "DR_branch", index = "CV_NMB"))
@@ -2386,38 +2386,38 @@ data <- data |> filter(fix_name != "(Intercept)") |> filter(index %in% c("CV_TTH
 
 # forest plot --
 plot_02 <- ggplot(data, aes(x = estimate, y = ID)) + 
-  geom_rect(aes(xmin = -0.044, xmax = 0.044, ymin =  0.5, ymax = 11.5), fill = "#8cc269", alpha = 0.008) + 
-  geom_rect(aes(xmin = -0.044, xmax = 0.044, ymin = 12.5, ymax = 23.5), fill = "#1ba784", alpha = 0.008) + 
-  geom_rect(aes(xmin = -0.044, xmax = 0.044, ymin = 24.5, ymax = 35.5), fill = "#1a6840", alpha = 0.008) + 
+  geom_rect(aes(xmin = -0.024, xmax = 0.044, ymin =  0.5, ymax = 11.5), fill = "#8cc269", alpha = 0.008) + 
+  geom_rect(aes(xmin = -0.024, xmax = 0.044, ymin = 12.5, ymax = 23.5), fill = "#1ba784", alpha = 0.008) + 
+  geom_rect(aes(xmin = -0.024, xmax = 0.044, ymin = 24.5, ymax = 35.5), fill = "#1a6840", alpha = 0.008) + 
   
   geom_errorbarh(aes(xmax = estimate + 1.96 * se, xmin = estimate - 1.96 * se, color = index), height = 0, linewidth = 3, alpha = 0.5) + 
   geom_point(aes(color = index), size = 2.5, alpha = 0.7, shape = 16) + 
   geom_segment(aes(x = 0, xend = 0, y = 0, yend = 35.5), linetype = 2, linewidth = 0.4) + 
 
-  annotate(geom = "text", x = -0.040, y = 10.8, label = expression(CV[H]), size = (10*0.35), family = "serif", fontface = "bold", color = "#8cc269", hjust = "left") + 
-  annotate(geom = "text", x = 0.025, y = 2, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
-  annotate(geom = "text", x = 0.033, y = 2, label = expression(""^"*"), size = (12*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.023, y = 10.8, label = expression(CV[H]), size = (10*0.35), family = "serif", fontface = "bold", color = "#8cc269", hjust = "left") + 
+  annotate(geom = "text", x = -0.015, y = 2, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.009, y = 2, label = expression(""^"*"), size = (12*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 4, label = "WD", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 6, label = "P50", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 8, label = "RDmax", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 10, label = "Hmax", size = (9*0.35), family = "serif", hjust = "left") + 
   
-  annotate(geom = "text", x = -0.040, y = 22.8, label = expression(CV[DBH]), size = (10*0.35), family = "serif", fontface = "bold", color = "#1ba784", hjust = "left") + 
-  annotate(geom = "text", x = 0.025, y = 14, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
-  annotate(geom = "text", x = 0.033, y = 14, label = expression(""^"*"), size = (12*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.023, y = 22.8, label = expression(CV[DBH]), size = (10*0.35), family = "serif", fontface = "bold", color = "#1ba784", hjust = "left") + 
+  annotate(geom = "text", x = -0.015, y = 14, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.009, y = 14, label = expression(""^"*"), size = (12*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 16, label = "WD", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 18, label = "P50", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 20, label = "RDmax", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 22, label = "Hmax", size = (9*0.35), family = "serif", hjust = "left") + 
   
-  annotate(geom = "text", x = -0.040, y = 34.8, label = expression(CV[NMB]), size = (10*0.35), family = "serif", fontface = "bold", color = "#1a6840", hjust = "left") + 
-  annotate(geom = "text", x = 0.025, y = 26, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
-  annotate(geom = "text", x = 0.033, y = 26, label = expression(""^"**"), size = (12*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.023, y = 34.8, label = expression(CV[NMB]), size = (10*0.35), family = "serif", fontface = "bold", color = "#1a6840", hjust = "left") + 
+  annotate(geom = "text", x = -0.015, y = 26, label = "NB", size = (9*0.35), family = "serif", hjust = "left") + 
+  annotate(geom = "text", x = -0.009, y = 26, label = expression(""^"**"), size = (12*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 28, label = "WD", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 30, label = "P50", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 32, label = "RDmax", size = (9*0.35), family = "serif", hjust = "left") + 
   annotate(geom = "text", x = 0.025, y = 34, label = "Hmax", size = (9*0.35), family = "serif", hjust = "left") + 
-  scale_x_continuous(limits = c(-0.044, 0.044), breaks = c(-0.04, 0, 0.04), labels = c("−0.04", "0", "0.04")) + 
+  scale_x_continuous(limits = c(-0.024, 0.044), breaks = c(-0.02, 0, 0.04), labels = c("−0.02", "0", "0.04")) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0, 36)) + 
   scale_fill_manual(values = c("#1ba784", "#1a6840", "#8cc269")) + 
   scale_color_manual(values = c("#1ba784", "#1a6840", "#8cc269")) + 
